@@ -6,38 +6,48 @@ let colors = [
 	"red","blue","green","purple","yellow"
 ]
 
-let min = 0
-let max = colors.length;
+let l = colors.length;
 
-const generateRandomNumber = (min:number,max:number) => {
-	let num =  Math.floor(Math.random() * (max - min + 1)) + min;
-	return num
-}
+const generateRandomNumber = () => Math.floor(Math.random() * (l- 0 + 1)) + 0
 
-const generateRandomColor = (num:number) => {
-	return colors[num];
-}
+const generateRandomColor = () => colors[generateRandomNumber()]
+
+const infoCards = [
+	{
+		color:generateRandomColor(),
+		href:"https://docs.astro.build/",
+		title:"Github",
+		body:"My hobby work. Including this website"
+	},
+	{
+		color:generateRandomColor(),
+		href:"https://www.linkedin.com/in/cameron-carley-711b07169/?originalSubdomain=ca",
+		title:"Linkedin",
+		body:"Work stuff! Let's connect!"
+	}
+]
+
 
 ---
-
-
 <Layout title="Cameron Carley's Personal Website">
 	<main>
-		<h1>Hi there, my name is <span class="text-gradient">Cameron Carley.</span></h1>
-		<h2>Welcome to my humble abode👋</h2>
+		<span class="center">
+			<h1>My name is <span class="text-gradient">Cameron Carley.</span></h1>
+			<h2>Welcome to my humble abode👋</h2>
+		</span>
+		<img src="profile.jpg" class="center round-img" alt="Avatar">
 		<ul role="list" class="link-card-grid">
-			<Card
-				color={generateRandomColor(generateRandomNumber(0,max))}
-				href="https://docs.astro.build/"
-				title="Github"
-				body="My hobby work. Including this website"
-			/>
-			<Card
-				color={generateRandomColor(generateRandomNumber(0,max))}
-				href="https://www.linkedin.com/in/cameron-carley-711b07169/?originalSubdomain=ca"
-				title="Linkedin"
-				body="Work stuff! Let's connect!"
-			/>
+		 {
+			infoCards.length ?
+				infoCards.map(card=>{
+					return (<Card
+						color={card.color}
+						href={card.href}
+						title={card.title}
+						body={card.body}
+					/>);
+			}) : <div>"Hi"</div>
+		}
 		</ul>
 	</main>
 </Layout>
@@ -46,7 +56,11 @@ const generateRandomColor = (num:number) => {
 	main {
 		margin: auto;
 		padding: 1.5rem;
-		max-width: 60ch;
+		max-width: 70ch;
+	}
+
+	.main-card-list{
+		max-width: 50ch;
 	}
 	h1 {
 		font-size: 2rem;
@@ -58,7 +72,16 @@ const generateRandomColor = (num:number) => {
 		font-size: 1.5rem;
 		font-weight:700;
 		margin-bottom:2rem;
+	}
 
+	.center{
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 35%;
+	}
+	.round-img{
+		border-radius: 50%;
 	}
 	.text-gradient {
 		background-image: var(--accent-gradient);
