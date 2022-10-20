@@ -1,41 +1,23 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+import {SocialMedia} from "../utils/socialMedia";
+import SocialMediaInfo from '../utils/socialMedia';
 
-let colors = [
-	"red","blue","green","purple","yellow"
-]
 
-let l = colors.length;
-
-const generateRandomNumber = () => Math.floor(Math.random() * (l- 0 + 1)) + 0
-
-const generateRandomColor = () => colors[generateRandomNumber()]
-
-const infoCards = [
-	{
-		color:generateRandomColor(),
-		href:"https://docs.astro.build/",
-		title:"Github",
-		body:"My hobby work. Including this website"
-	},
-	{
-		color:generateRandomColor(),
-		href:"https://www.linkedin.com/in/cameron-carley-711b07169/?originalSubdomain=ca",
-		title:"Linkedin",
-		body:"Work stuff! Let's connect!"
-	}
-]
-
+const infoCards : Array<SocialMedia> = SocialMediaInfo;
 
 ---
 <Layout title="Cameron Carley's Personal Website">
 	<main>
-		<span class="center">
+		<span class="headings">
 			<h1>My name is <span class="text-gradient">Cameron Carley.</span></h1>
 			<h2>Welcome to my humble abode👋</h2>
 		</span>
-		<img src="profile.jpg" class="center round-img" alt="Avatar">
+		<picture class="center">
+			<source type="image/webp" srcset="profile.webp">
+			<img class="round-img" src="profile.webp">
+		</picture>
 		<ul role="list" class="link-card-grid">
 		 {
 			infoCards.length ?
@@ -45,6 +27,7 @@ const infoCards = [
 						href={card.href}
 						title={card.title}
 						body={card.body}
+						iconName={card.iconName}
 					/>);
 			}) : <div>"Hi"</div>
 		}
@@ -55,23 +38,35 @@ const infoCards = [
 <style>
 	main {
 		margin: auto;
+		margin-top:3rem;
 		padding: 1.5rem;
 		max-width: 70ch;
+		background-color: rgba(12,30,45,0.7);
+		backdrop-filter: blur(10px);
+		border-radius:2rem;
+		border-width: 0.3rem;
+		border-color: rgba(12,30,45,0.3);
 	}
-
 	.main-card-list{
 		max-width: 50ch;
 	}
+
+	.headings{
+		/* display:inline; */
+	}
 	h1 {
+		margin-left:1rem;
 		font-size: 2rem;
 		font-weight: 800;
 		margin: 0;
+		color:azure
 	}
 
 	h2{
 		font-size: 1.5rem;
 		font-weight:700;
 		margin-bottom:2rem;
+		color:azure
 	}
 
 	.center{
@@ -82,6 +77,7 @@ const infoCards = [
 	}
 	.round-img{
 		border-radius: 50%;
+		margin-bottom: 1.5rem;
 	}
 	.text-gradient {
 		background-image: var(--accent-gradient);
@@ -90,25 +86,7 @@ const infoCards = [
 		background-size: 400%;
 		background-position: 0%;
 	}
-	.instructions {
-		line-height: 1.6;
-		margin: 1rem 0;
-		border: 1px solid rgba(var(--accent), 25%);
-		background-color: white;
-		padding: 1rem;
-		border-radius: 0.4rem;
-	}
-	.instructions code {
-		font-size: 0.875em;
-		font-weight: bold;
-		background: rgba(var(--accent), 12%);
-		color: rgb(var(--accent));
-		border-radius: 4px;
-		padding: 0.3em 0.45em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent));
-	}
+
 	.link-card-grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
