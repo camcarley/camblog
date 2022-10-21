@@ -19,41 +19,9 @@ const { title } = Astro.props;
 		<slot />
 		<style is:global>
 			:root {
-				--accent-gradient: radial-gradient(
-						at 13% 91%,
-						hsla(283, 88%, 62%, 1) 0px,
-						transparent 50%
-					),
-					radial-gradient(
-						at 42% 68%,
-						hsla(41, 83%, 67%, 1) 0px,
-						transparent 50%
-					),
-					radial-gradient(
-						at 53% 22%,
-						hsla(345, 79%, 74%, 1) 0px,
-						transparent 50%
-					),
-					radial-gradient(
-						at 14% 75%,
-						hsla(249, 87%, 77%, 1) 0px,
-						transparent 50%
-					),
-					radial-gradient(
-						at 54% 7%,
-						hsla(96, 86%, 61%, 1) 0px,
-						transparent 50%
-					),
-					radial-gradient(
-						at 53% 87%,
-						hsla(110, 69%, 71%, 1) 0px,
-						transparent 50%
-					),
-					radial-gradient(
-						at 71% 51%,
-						hsla(318, 75%, 77%, 1) 0px,
-						transparent 50%
-					);
+		--accentA: 54, 209, 220;
+		--accentB: 91, 134, 229;
+		--accent-gradient: linear-gradient(45deg, rgb(var(--accentA)), rgb(var(--accentB)) 30%, white 60%);
 			}
 			html {
 				font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;

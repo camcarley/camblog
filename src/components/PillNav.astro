@@ -10,7 +10,7 @@ const infoCards: Array<SocialMedia> = SocialMediaInfo;
 
 <Layout title="Cameron Carley's Personal Website">
 	<main>
-		<span class="center-text">
+		<span class="headings">
 			<h1>
 				My name is <span class="text-gradient">Cameron Carley.</span>
 			</h1>
@@ -22,15 +22,15 @@ const infoCards: Array<SocialMedia> = SocialMediaInfo;
 		</picture>
 		<div class="pill-nav">
 			<a href="/index">
-				<Icon class="text-gradient pill-icon" name="home" />
+				<Icon class="pill-icon" name="home" />
 				Home
 			</a>
 			<a href="/contact">
-				<Icon class="text-gradient pill-icon" name="contact" />
+				<Icon class="pill-icon" name="contact" />
 				Contact
 			</a>
 			<a href="#about">
-				<Icon class="text-gradient pill-icon" name="about"/>
+				<Icon class="pill-icon" name="about"/>
 				About
 			</a>
 		</div>
@@ -57,10 +57,6 @@ const infoCards: Array<SocialMedia> = SocialMediaInfo;
 </Layout>
 
 <style>
-
-	.center-text{
-		text-align:center;
-	}
 	main {
 		margin: auto;
 		margin-top: 3rem;
@@ -92,7 +88,7 @@ const infoCards: Array<SocialMedia> = SocialMediaInfo;
 	}
 
 	.pill-nav a {
-		color: lightgray;
+		color: white;
 		margin-bottom: 1.5rem;
 		padding: 5px;
 		margin-right:3px;
@@ -106,7 +102,7 @@ const infoCards: Array<SocialMedia> = SocialMediaInfo;
 
 	/* Change the color of links on mouse-over */
 	.pill-nav a:hover {
-		color: lightgray;
+		color: white;
 		background-color: rgba(52, 149, 205, 0.41);
 		backdrop-filter: blur(1px);
 		border-width: 0.2rem;
@@ -115,7 +111,7 @@ const infoCards: Array<SocialMedia> = SocialMediaInfo;
 
 	/* Add a color to the active/current link */
 	.pill-nav a.active {
-		color: lightgray;
+		color: white;
 	}
 
 	.pill-icon{
@@ -126,39 +122,5 @@ const infoCards: Array<SocialMedia> = SocialMediaInfo;
 		margin-right:7px;
 	}
 
-	.center {
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
-		width: 35%;
-	}
 
-	.pill-nav {
-		width: 100%;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		list-style: none;
-		margin: 0;
-		padding: 0;
-	}
-
-	.round-img {
-		border-radius: 50%;
-		margin-bottom: 1.5rem;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 1rem;
-		padding: 0;
-	}
 </style>
