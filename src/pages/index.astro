@@ -1,36 +1,47 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
-import {SocialMedia} from "../utils/socialMedia";
-import SocialMediaInfo from '../utils/socialMedia';
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+import { SocialMedia } from "../utils/socialMedia";
+import SocialMediaInfo from "../utils/socialMedia";
 
-
-const infoCards : Array<SocialMedia> = SocialMediaInfo;
-
+const infoCards: Array<SocialMedia> = SocialMediaInfo;
 ---
+
 <Layout title="Cameron Carley's Personal Website">
 	<main>
 		<span class="headings">
-			<h1>My name is <span class="text-gradient">Cameron Carley.</span></h1>
+			<h1>
+				My name is <span class="text-gradient">Cameron Carley.</span>
+			</h1>
 			<h2>Welcome to my humble abode👋</h2>
 		</span>
 		<picture class="center">
-			<source type="image/webp" srcset="profile.webp">
-			<img class="round-img" src="profile.webp">
+			<source type="image/webp" srcset="profile.webp" />
+			<img class="round-img" src="profile.webp" />
 		</picture>
+		<div class="pill-nav">
+			<a href="/index">Home</a>
+			<a href="/contact">Contact</a>
+			<a href="#about">About</a>
+		</div>
 		<ul role="list" class="link-card-grid">
-		 {
-			infoCards.length ?
-				infoCards.map(card=>{
-					return (<Card
-						color={card.color}
-						href={card.href}
-						title={card.title}
-						body={card.body}
-						iconName={card.iconName}
-					/>);
-			}) : <div>"Hi"</div>
-		}
+			{
+				infoCards.length ? (
+					infoCards.map((card) => {
+						return (
+							<Card
+								color={card.color}
+								href={card.href}
+								title={card.title}
+								body={card.body}
+								iconName={card.iconName}
+							/>
+						);
+					})
+				) : (
+					<div>"Hi"</div>
+				)
+			}
 		</ul>
 	</main>
 </Layout>
@@ -38,44 +49,78 @@ const infoCards : Array<SocialMedia> = SocialMediaInfo;
 <style>
 	main {
 		margin: auto;
-		margin-top:3rem;
+		margin-top: 3rem;
 		padding: 1.5rem;
 		max-width: 70ch;
-		background-color: rgba(12,30,45,0.7);
+		background-color: rgba(12, 30, 45, 0.7);
 		backdrop-filter: blur(10px);
-		border-radius:2rem;
+		border-radius: 2rem;
 		border-width: 0.3rem;
-		border-color: rgba(12,30,45,0.3);
+		border-color: rgba(12, 30, 45, 0.3);
 	}
-	.main-card-list{
+	.main-card-list {
 		max-width: 50ch;
 	}
 
-	.headings{
-		/* display:inline; */
-	}
 	h1 {
-		margin-left:1rem;
+		margin-left: 1rem;
 		font-size: 2rem;
 		font-weight: 800;
 		margin: 0;
-		color:azure
+		color: azure;
 	}
 
-	h2{
+	h2 {
 		font-size: 1.5rem;
-		font-weight:700;
-		margin-bottom:2rem;
-		color:azure
+		font-weight: 700;
+		margin-bottom: 2rem;
+		color: azure;
 	}
 
-	.center{
+	.pill-nav a {
+		color: white;
+		margin-bottom: 1.5rem;
+		padding: 8px;
+		font-size: 15px;
+		border-radius: 50px;
+		background-color: rgba(36, 93, 125, 0.207);
+		backdrop-filter: blur(1px);
+		border-width: 0.2rem;
+		border-color: rgba(12, 30, 45, 0.3);
+	}
+
+	/* Change the color of links on mouse-over */
+	.pill-nav a:hover {
+		color: white;
+		background-color: rgba(52, 149, 205, 0.41);
+		backdrop-filter: blur(1px);
+		border-width: 0.2rem;
+		border-color: rgba(12, 30, 45, 0.205);
+	}
+
+	/* Add a color to the active/current link */
+	.pill-nav a.active {
+		color: white;
+	}
+
+	.center {
 		display: block;
 		margin-left: auto;
 		margin-right: auto;
 		width: 35%;
 	}
-	.round-img{
+
+	.pill-nav {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.round-img {
 		border-radius: 50%;
 		margin-bottom: 1.5rem;
 	}
