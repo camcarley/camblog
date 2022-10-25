@@ -1,18 +1,19 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
-import { SocialMedia } from "../utils/socialMedia";
-import SocialMediaInfo from "../utils/socialMedia";
+import SocialMediaInfo, { SocialMedia } from "../utils/socialMedia";
+import Routes, { Route } from "../utils/routes";
 import { Icon } from "astro-icon";
 
 const infoCards: Array<SocialMedia> = SocialMediaInfo;
+const title = "Cameron Carley";
 ---
 
-<Layout title="Cameron Carley's Personal Website">
+<Layout title={title}>
 	<main>
 		<span class="center-text">
 			<h1>
-				My name is <span class="text-gradient">Cameron Carley.</span>
+				My name is <span class="text-gradient">{title}.</span>
 			</h1>
 			<h2>Welcome to my humble abode👋</h2>
 		</span>
@@ -21,18 +22,25 @@ const infoCards: Array<SocialMedia> = SocialMediaInfo;
 			<img class="round-img" src="profile.webp" />
 		</picture>
 		<div class="pill-nav">
-			<a href="/index">
-				<Icon class="text-gradient pill-icon" name="home" />
-				Home
-			</a>
-			<a href="/contact">
-				<Icon class="text-gradient pill-icon" name="contact" />
-				Contact
-			</a>
-			<a href="#about">
-				<Icon class="text-gradient pill-icon" name="about"/>
-				About
-			</a>
+			{
+				Routes.length ? (
+					Routes.map((route: Route) => {
+						return (
+							<a href={route.path}
+								aria-label={route.ariaLabel}
+							>
+								<Icon
+									class="text-gradient pill-icon"
+									name={route.iconName}
+								/>
+								{route.navTitle}
+							</a>
+						);
+					})
+				) : (
+					<p>There are no routes for this website</p>
+				)
+			}
 		</div>
 		<ul role="list" class="link-card-grid">
 			{
@@ -57,9 +65,8 @@ const infoCards: Array<SocialMedia> = SocialMediaInfo;
 </Layout>
 
 <style>
-
-	.center-text{
-		text-align:center;
+	.center-text {
+		text-align: center;
 	}
 	main {
 		margin: auto;
@@ -95,7 +102,7 @@ const infoCards: Array<SocialMedia> = SocialMediaInfo;
 		color: lightgray;
 		margin-bottom: 1.5rem;
 		padding: 5px;
-		margin-right:3px;
+		margin-right: 3px;
 		font-size: 15px;
 		border-radius: 50px;
 		background-color: rgba(36, 93, 125, 0.207);
@@ -118,12 +125,12 @@ const infoCards: Array<SocialMedia> = SocialMediaInfo;
 		color: lightgray;
 	}
 
-	.pill-icon{
-		height:15px;
-		width:15px;
-		float:left;
-		margin-top:3px;
-		margin-right:7px;
+	.pill-icon {
+		height: 15px;
+		width: 15px;
+		float: left;
+		margin-top: 3px;
+		margin-right: 7px;
 	}
 
 	.center {
