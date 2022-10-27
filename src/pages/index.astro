@@ -1,9 +1,10 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from "../layouts/IndexLayout.astro";
 import Card from "../components/Card.astro";
 import SocialMediaInfo, { SocialMedia } from "../utils/socialMedia";
-import Routes, { Route } from "../utils/routes";
+import Routes from "../utils/routes";
 import { Icon } from "astro-icon";
+import Pill from "../components/Pill.astro";
 
 const infoCards: Array<SocialMedia> = SocialMediaInfo;
 const title = "Cameron Carley";
@@ -24,17 +25,14 @@ const title = "Cameron Carley";
 		<div class="pill-nav">
 			{
 				Routes.length ? (
-					Routes.map((route: Route) => {
+					Routes.map((route) => {
 						return (
-							<a href={route.path}
-								aria-label={route.ariaLabel}
-							>
-								<Icon
-									class="text-gradient pill-icon"
-									name={route.iconName}
-								/>
-								{route.navTitle}
-							</a>
+							<Pill
+								ariaLabel={route.ariaLabel}
+								title={route.title}
+								hrefLink={route.hrefLink}
+								iconName={route.iconName}
+							/>
 						);
 					})
 				) : (
@@ -57,7 +55,7 @@ const title = "Cameron Carley";
 						);
 					})
 				) : (
-					<div>"Hi"</div>
+					<div>"Nothing currently going on"</div>
 				)
 			}
 		</ul>
@@ -98,40 +96,7 @@ const title = "Cameron Carley";
 		color: azure;
 	}
 
-	.pill-nav a {
-		color: lightgray;
-		margin-bottom: 1.5rem;
-		padding: 5px;
-		margin-right: 3px;
-		font-size: 15px;
-		border-radius: 50px;
-		background-color: rgba(36, 93, 125, 0.207);
-		backdrop-filter: blur(1px);
-		border-width: 0.2rem;
-		border-color: rgba(12, 30, 45, 0.3);
-	}
 
-	/* Change the color of links on mouse-over */
-	.pill-nav a:hover {
-		color: lightgray;
-		background-color: rgba(52, 149, 205, 0.41);
-		backdrop-filter: blur(1px);
-		border-width: 0.2rem;
-		border-color: rgba(12, 30, 45, 0.205);
-	}
-
-	/* Add a color to the active/current link */
-	.pill-nav a.active {
-		color: lightgray;
-	}
-
-	.pill-icon {
-		height: 15px;
-		width: 15px;
-		float: left;
-		margin-top: 3px;
-		margin-right: 7px;
-	}
 
 	.center {
 		display: block;

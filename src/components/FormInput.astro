@@ -1,0 +1,135 @@
+---
+export interface Props {
+    placeholder: string;
+    name: string;
+    type: astroHTML.JSX.HTMLInputTypeAttribute | "textarea";
+    tabidx: string;
+    aria:string;
+    required: boolean;
+}
+
+const { placeholder, type, tabidx, required, name, aria } = Astro.props;
+const formLabel = name.charAt(0).toUpperCase() + name.slice(1);
+---
+
+<fieldset>
+    <label for={name}>
+        {formLabel}{required ?<span class="required">*</span> : null}
+    </label>
+    {
+        type === "textarea" ? (
+            <textarea
+                aria-label={aria}
+                placeholder={placeholder}
+                tabindex={tabidx}
+                required={required}
+                name={name}
+            />
+        ) : (
+            <input
+                aria-label={aria}
+                placeholder={placeholder}
+                type={type}
+                tabindex={tabidx}
+                required={required}
+                name={name}
+            />
+        )
+    }
+</fieldset>
+
+<style>
+
+span.required{
+    color: rgba(255, 89, 89, 0.921);
+}
+
+h3{
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+    label{
+		color: lightgray;
+        margin-bottom:3rem;
+        font-size:1rem;
+    }
+
+     input[type="text"],
+     input[type="email"],
+     input[type="tel"],
+     input[type="url"],
+     textarea,
+     button[type="submit"] {
+        font: 400 12px/16px "Roboto", Helvetica, Arial, sans-serif;
+    }
+    fieldset {
+        border: medium none !important;
+        margin: 0 0 10px;
+        min-width: 100%;
+        padding: 0;
+        width: 100%;
+        display:block;
+    }
+
+     input[type="text"],
+     input[type="email"],
+     input[type="tel"],
+     input[type="url"],
+     textarea {
+        width: 100%;
+        border: 1px solid #ccc;
+        background: #fff;
+        margin: 0 0 5px;
+        padding: 10px;
+    }
+
+    ::-webkit-input-placeholder {
+        color: #888;
+    }
+
+    :-moz-placeholder {
+        color: #888;
+    }
+
+    ::-moz-placeholder {
+        color: #888;
+    }
+
+    :-ms-input-placeholder {
+        color: #888;
+    }
+
+     input[type="text"]:hover,
+     input[type="email"]:hover,
+     input[type="tel"]:hover,
+     input[type="url"]:hover,
+     textarea:hover {
+        -webkit-transition: border-color 0.3s ease-in-out;
+        -moz-transition: border-color 0.3s ease-in-out;
+        transition: border-color 0.3s ease-in-out;
+        border: 1px solid #aaa;
+    }
+
+     textarea {
+        height: 100px;
+        max-width: 100%;
+        resize: none;
+    }
+
+     input:focus,
+     textarea:focus {
+        outline: 0;
+        border: 1px solid #aaa;
+    }
+
+
+    input:invalid {
+        border-color: rgba(255, 0, 0, 0.458);
+        border-width: 0.2rem;
+    }
+
+</style>

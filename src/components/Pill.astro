@@ -1,0 +1,60 @@
+---
+import { Icon } from "astro-icon";
+
+export interface Props {
+	title: string;
+	hrefLink: string;
+	iconName: string;
+    ariaLabel: string;
+}
+
+const { title, hrefLink, iconName, ariaLabel } = Astro.props;
+---
+
+<a href={hrefLink} aria-label={ariaLabel}>
+        <Icon class="pill-icon" name={iconName} />
+    {title}
+</a>
+
+<style>
+    a {
+        width:6rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+        color: lightgray;
+        margin-bottom: 1.5rem;
+        padding: 5px;
+        margin-right: 3px;
+        font-size: 13px;
+        border-radius: 50px;
+        background-color: rgba(36, 93, 125, 0.207);
+        backdrop-filter: blur(1px);
+        border-width: 0.2rem;
+        border-color: rgba(12, 30, 45, 0.3);
+    }
+
+    /* Change the color of links on mouse-over */
+    a:hover {
+        color: lightgray;
+        background-color: rgba(52, 149, 205, 0.41);
+        backdrop-filter: blur(1px);
+        border-width: 0.2rem;
+        border-color: rgba(12, 30, 45, 0.205);
+        -webkit-transition: background 0.3s ease-in-out;
+        -moz-transition: background 0.3s ease-in-out;
+        transition: background-color 0.3s ease-in-out;
+    }
+
+    /* Add a color to the active/current link */
+    a.active {
+        color: lightgray;
+    }
+    .pill-icon {
+        height:15px;
+        width: 15px;
+        float: left;
+        margin-right:5px;
+        margin-bottom:2px;
+    }
+</style>

@@ -1,33 +1,28 @@
-export type Route = {
-    path:string;
-    iconName:string;
-    navTitle:string;
-    ariaLabel:string;
-}
+import {Props as Pill} from "../components/Pill.astro";
 
-const Routes: Array<Route> = [
+const Routes: Array<Pill> = [
     {
-        path: "/",
+        hrefLink: "/",
         iconName: "home",
-        navTitle: "Home",
+        title: "Home",
         ariaLabel: "Home"
     },
     {
-        path: "/about",
+        hrefLink: "/about",
         iconName: "about",
-        navTitle: "About",
+        title: "About",
         ariaLabel: "Learn about Cameron Carley"
     },
     {
-        path: "/projects",
+        hrefLink: "/projects",
         iconName: "projects",
-        navTitle: "Projects",
+        title: "Projects",
         ariaLabel: "View Cameron Carley's projects"
     },
     {
-        path: "/contact",
+        hrefLink: "/contact",
         iconName: "contact",
-        navTitle: "Contact",
+        title: "Contact",
         ariaLabel: "Contact Cameron Carley"
     }
 ]

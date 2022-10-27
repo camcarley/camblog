@@ -1,0 +1,137 @@
+---
+import Layout from "../layouts/IndexLayout.astro";
+import { Icon } from "astro-icon";
+import FormInput, {
+    Props as FormInputType,
+} from "../components/FormInput.astro";
+import Pill from "../components/Pill.astro";
+
+const title = "Contact Cameron Carley";
+
+const inputs: FormInputType[] = [
+    {
+        placeholder: "Name",
+        aria:"Enter your name",
+        type: "text",
+        name: "name",
+        required: true,
+        tabidx: "1",
+    },
+    {
+        placeholder: "example@mail.net",
+        aria:"Enter your email",
+        type: "email",
+        name: "email",
+        required: true,
+        tabidx: "2",
+    },
+    {
+        placeholder: "###-###-####",
+        aria:"Enter your phone number",
+        type: "tel",
+        name: "Phone number",
+        required: false,
+        tabidx: "3",
+    },
+    {
+        placeholder: "Whats up?",
+        aria:"Enter your message",
+        type: "textarea",
+        name: "message",
+        required: true,
+        tabidx: "4",
+    },
+];
+---
+
+<Layout title={title}>
+    <main>
+        <Pill
+            ariaLabel="Back to home"
+            hrefLink="/"
+            iconName="home"
+            title="Home"
+        />
+        <h3>Contact Me</h3>
+        <form id="contact" action="" method="post">
+            {
+                inputs.map((input:FormInputType) => {
+                    return (
+                        <FormInput
+                            aria={input.aria}
+                            required={input.required}
+                            name={input.name}
+                            placeholder={input.placeholder}
+                            tabidx={input.tabidx}
+                            type={input.type}
+                        />
+                    );
+                })
+            }
+            <fieldset>
+                <button
+                    name="submit"
+                    type="submit"
+                    id="contact-submit"
+                    data-submit="...Sending">Submit</button
+                >
+            </fieldset>
+        </form>
+    </main>
+</Layout>
+
+<style>
+
+    h3 {
+        background-image: var(--accent-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 400%;
+        background-position: 0%;
+        margin-left: 1rem;
+        text-align:center;
+        font-size: 2rem;
+        font-weight: 800;
+        margin: 0;
+        color: azure;
+    }
+
+    #contact button[type="submit"] {
+        cursor: pointer;
+        width: 100%;
+        border: none;
+        background-color: rgba(52, 149, 205, 0.40);
+        color: #fff;
+        margin: 0 0 5px;
+        padding: 10px;
+        font-size: 15px;
+    }
+
+    #contact button[type="submit"]:hover {
+        background-color: rgba(52, 149, 205, 0.60);
+        -webkit-transition: background 0.1s ease-in-out;
+        -moz-transition: background 0.1s ease-in-out;
+        transition: background-color 0.1s ease-in-out;
+    }
+
+    #contact button[type="submit"]:active {
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+
+    main {
+        margin: auto;
+        margin-top: 3rem;
+        padding: 1.5rem;
+        max-width: 70ch;
+        background-color: rgba(12, 30, 45, 0.7);
+        backdrop-filter: blur(10px);
+        border-radius: 2rem;
+        border-width: 0.3rem;
+        border-color: rgba(12, 30, 45, 0.3);
+    }
+
+    .copyright {
+        text-align: center;
+    }
+</style>
